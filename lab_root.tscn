@@ -3,13 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://bp5iijuni73ls" path="res://assets/windowpane.png" id="1_h2kj6"]
 [ext_resource type="Script" uid="uid://draip2rum4858" path="res://lab_root.gd" id="1_wnj6q"]
 
-[sub_resource type="Environment" id="Environment_rqjwq"]
+[sub_resource type="Environment" id="Environment_wnj6q"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/3 = 1.0
+glow_levels/4 = 1.0
+glow_levels/5 = 1.0
+glow_levels/6 = 1.0
 
 [node name="LabRoot" type="Node2D" unique_id=1633640104]
 script = ExtResource("1_wnj6q")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=945038807]
-environment = SubResource("Environment_rqjwq")
+environment = SubResource("Environment_wnj6q")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1674435930]
 
@@ -55,25 +63,21 @@ offset_bottom = 83.0
 layout_mode = 2
 text = "Test Label"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/Control/VBoxContainer" unique_id=1238378574]
-layout_mode = 2
-
-[node name="IntensitySlider" type="HSlider" parent="UILayer/Control/VBoxContainer/HBoxContainer" unique_id=87836994]
+[node name="IntensitySlider" type="HSlider" parent="UILayer/Control/VBoxContainer" unique_id=87836994]
 layout_mode = 2
 tooltip_text = "Intensity"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="UILayer/Control/VBoxContainer" unique_id=748665144]
+[node name="ThresholdSlider" type="HSlider" parent="UILayer/Control/VBoxContainer" unique_id=1623403249]
 layout_mode = 2
+tooltip_text = "Threshold"
+max_value = 2.0
+step = 0.1
 
-[node name="ThresholdSlider" type="HSlider" parent="UILayer/Control/VBoxContainer/HBoxContainer2" unique_id=1623403249]
+[node name="StrengthSlider" type="HSlider" parent="UILayer/Control/VBoxContainer" unique_id=1743594197]
 layout_mode = 2
-tooltip_text = "Glow"
+tooltip_text = "Strength
+"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UILayer/Control/VBoxContainer" unique_id=835556783]
-layout_mode = 2
-
-[node name="BloomSlider" type="HSlider" parent="UILayer/Control/VBoxContainer/HBoxContainer3" unique_id=1743594197]
-layout_mode = 2
-tooltip_text = "Bloom"
-
-[connection signal="value_changed" from="UILayer/Control/VBoxContainer/HBoxContainer/IntensitySlider" to="." method="_on_intensity_changed"]
+[connection signal="value_changed" from="UILayer/Control/VBoxContainer/IntensitySlider" to="." method="_on_intensity_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Control/VBoxContainer/ThresholdSlider" to="." method="_on_threshold_slider_value_changed"]
+[connection signal="value_changed" from="UILayer/Control/VBoxContainer/StrengthSlider" to="." method="_on_strength_slider_value_changed"]

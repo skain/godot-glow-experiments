@@ -3,11 +3,13 @@ extends Node2D
 @onready var world_env: WorldEnvironment = $WorldEnvironment
 @onready var env: Environment = world_env.environment
 
+# Add this to your _ready() function in lab_root.gd
 func _ready() -> void:
-	# Ensure Glow is actually on
 	env.glow_enabled = true
-	# Set a default blend mode (usually Additive for 2D)
 	env.glow_blend_mode = Environment.GLOW_BLEND_MODE_ADDITIVE
+
+	# "Overdrive" the color so it exceeds the default 1.0 threshold
+	$GameWorld/GlowingSprite2D.self_modulate = Color(1.5, 1.5, 5.0) # Very blue glow
 
 func _on_intensity_slider_value_changed(value: float) -> void:
 	env.glow_intensity = value
