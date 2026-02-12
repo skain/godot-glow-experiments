@@ -82,6 +82,17 @@ max_value = 2.0
 step = 0.01
 value = 1.0
 
+[node name="Label7" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=30010210]
+layout_mode = 2
+text = "Glow HDR Threshold"
+
+[node name="HDRThresholdHSlider" type="HSlider" parent="CanvasLayer/VBoxContainer" unique_id=776451328]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 4.0
+step = 0.01
+value = 1.0
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2031206986]
 custom_minimum_size = Vector2(5000, 5000)
 color = Color(0.07762883, 0.07762881, 0.07762881, 1)
@@ -106,3 +117,4 @@ environment = SubResource("Environment_wnj6q")
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/GlowIntensityHSlider" to="." method="_on_glow_intensity_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/GlowStrengthHSlider" to="." method="_on_glow_strength_h_slider_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/BloomHSlider" to="." method="_on_bloom_h_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HDRThresholdHSlider" to="." method="_on_hdr_threshold_h_slider_value_changed"]
