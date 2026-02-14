@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bp5iijuni73ls" path="res://assets/windowpane.png" id="1_h2kj6"]
 [ext_resource type="Script" uid="uid://ciqc3k3ssc5ye" path="res://lab_root.gd" id="1_wnj6q"]
 [ext_resource type="PackedScene" uid="uid://y1vayfqif44f" path="res://parameter_editor.tscn" id="2_rqjwq"]
+[ext_resource type="PackedScene" uid="uid://bvt3vkwugm3xm" path="res://parameter_enabler.tscn" id="3_rl28y"]
 
 [sub_resource type="Environment" id="Environment_wnj6q"]
 background_mode = 3
@@ -23,15 +24,18 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="Sprite1SelfModulate" parent="CanvasLayer/VBoxContainer" unique_id=509762181 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
 layout_mode = 2
-label_text = "Sprite1 Self-Modulate Multiple"
-step = 0.5
-value = 2.0
+min_value = 1.0
+max_value = 10.0
+step = 0.1
 
 [node name="Sprite2SelfModulate" parent="CanvasLayer/VBoxContainer" unique_id=1413787832 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
 layout_mode = 2
-label_text = "Spirte2 Self-Modulate Multiple"
-step = 0.5
+min_value = 1.0
+max_value = 10.0
+step = 0.1
 
 [node name="WORLD ENV" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=2128661508]
 self_modulate = Color(0.48839313, 0.72058046, 0.67710626, 1)
@@ -39,32 +43,47 @@ layout_mode = 2
 text = "WORLD ENVIRONMENT"
 
 [node name="GlowIntensity" parent="CanvasLayer/VBoxContainer" unique_id=492585302 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
 layout_mode = 2
-label_text = "Glow Intensity"
 min_value = 0.0
 max_value = 8.0
 step = 0.01
-value = 0.3
 
 [node name="GlowStrength" parent="CanvasLayer/VBoxContainer" unique_id=1809967978 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
 layout_mode = 2
-label_text = "Glow Strength"
 min_value = 0.0
 max_value = 2.0
 step = 0.01
 
 [node name="Bloom" parent="CanvasLayer/VBoxContainer" unique_id=1489698742 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
 layout_mode = 2
-label_text = "Bloom"
 min_value = 0.0
-max_value = 2.0
+max_value = 1.0
 step = 0.01
 
 [node name="HDR Threshold" parent="CanvasLayer/VBoxContainer" unique_id=2036162597 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
 layout_mode = 2
-label_text = "HDR Threshold"
 min_value = 0.0
 max_value = 4.0
+step = 0.01
+
+[node name="CanvasModulateEnabled" parent="CanvasLayer/VBoxContainer" unique_id=1203531340 instance=ExtResource("3_rl28y")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CanvasModulateValue" parent="CanvasLayer/VBoxContainer" unique_id=755259495 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="CanvasModulateAlpha" parent="CanvasLayer/VBoxContainer" unique_id=1161486344 instance=ExtResource("2_rqjwq")]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
 step = 0.01
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2031206986]
@@ -73,7 +92,7 @@ color = Color(0.07762883, 0.07762881, 0.07762881, 1)
 
 [node name="Sprite1" type="Sprite2D" parent="." unique_id=527765702]
 unique_name_in_owner = true
-self_modulate = Color(3.2944162, 3.2944162, 3.2944162, 1)
+self_modulate = Color(3.294, 3.294, 3.294, 1)
 position = Vector2(71, 130)
 texture = ExtResource("1_h2kj6")
 
@@ -86,9 +105,15 @@ texture = ExtResource("1_h2kj6")
 unique_name_in_owner = true
 environment = SubResource("Environment_wnj6q")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=674977755]
+color = Color(0.35, 0.35, 0.35, 1)
+
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/Sprite1SelfModulate" to="." method="_on_sprite_1_self_modulate_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/Sprite2SelfModulate" to="." method="_on_sprite_2_self_modulate_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/GlowIntensity" to="." method="_on_glow_intensity_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/GlowStrength" to="." method="_on_glow_strength_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/Bloom" to="." method="_on_bloom_value_changed"]
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/HDR Threshold" to="." method="_on_hdr_threshold_value_changed"]
+[connection signal="check_box_toggled" from="CanvasLayer/VBoxContainer/CanvasModulateEnabled" to="." method="_on_canvas_modulate_enabled_check_box_toggled"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/CanvasModulateValue" to="." method="_on_canvas_modulate_value_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/CanvasModulateAlpha" to="." method="_on_canvas_modulate_alpha_value_changed"]
