@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://y1vayfqif44f"]
+
+[ext_resource type="Script" uid="uid://bpcdy4h2lxi2x" path="res://parameter_editor.gd" id="1_llv3v"]
+
+[node name="ParameterEditor" type="VBoxContainer" unique_id=509762181]
+offset_right = 390.0
+offset_bottom = 50.0
+script = ExtResource("1_llv3v")
+label_text = null
+min_value = null
+max_value = null
+step = null
+
+[node name="Label" type="Label" parent="." unique_id=1072689604]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Label"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=213744518]
+layout_mode = 2
+
+[node name="ValueLabel" type="Label" parent="HBoxContainer" unique_id=1876537045]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10"
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer" unique_id=401362060]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

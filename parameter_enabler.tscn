@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bvt3vkwugm3xm"]
+
+[ext_resource type="Script" uid="uid://ctksobxrbdju3" path="res://parameter_enabler.gd" id="1_2j0ws"]
+
+[node name="ParameterEnabler" type="HBoxContainer" unique_id=1203531340]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2j0ws")
+
+[node name="Label" type="Label" parent="." unique_id=1607926472]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Check"
+
+[node name="CheckBox" type="CheckBox" parent="." unique_id=1797381222]
+layout_mode = 2
+button_pressed = true
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
